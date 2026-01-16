@@ -1,0 +1,13 @@
+let icon = document.getElementById("icon");
+      let password = document.getElementById("password");
+
+      icon.onclick = function(){
+        if(password.type == "password"){
+          password.type = "text";
+          icon.textContent = "Hide";
+
+        }else{
+          password.type = "password";
+          icon.textContent = "Show"
+        }
+      }

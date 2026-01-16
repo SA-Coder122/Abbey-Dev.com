@@ -1,0 +1,169 @@
+const errorMsgEl = document.querySelector(".error_message");
+const budgetInputEl = document.querySelector(".budget_input");
+const expensesDescEl = document.querySelector(".expenses_input");
+const expensesAmountEl = document.querySelector(".expenses_amount");
+const tblRecordEl = document.querySelector(".table_data");
+const cardsContainer = document.querySelector(".cards");
+let DateTb = new Date();
+let error = document.querySelector(".error_message");
+
+
+//=============Cards============
+const budgetCardEl = document.querySelector(".budget_card");
+const expensesCardEl = document.querySelector(".expenses_card");
+const balanceCardEl = document.querySelector(".balance_card");
+
+let itemList = JSON.parse(localStorage.getItem('itemList')) || [];
+let budgetAmount = localStorage.getItem('budgetAmount') || 0;
+let itemId = itemList.length > 0 ? Math.max(...itemList.map(i => i.id)) + 1 : 0;
+
+//===============Button Events==========
+function btnEvents() {
+  const btnBudgetCal = document.querySelector("#btn_budget");
+  const btnExpensesCal = document.querySelector("#btn_expenses");
+
+  //==========budget Event===========
+  btnBudgetCal.addEventListener("click", (e) => {
+    e.preventDefault();
+    budgetFun();
+  });
+
+  btnExpensesCal.addEventListener("click", (e) => {
+    e.preventDefault();
+    expensesFun();
+  });
+}
+
+//==================Calling Btn Events================
+document.addEventListener("DOMContentLoaded", () => {
+  btnEvents();
+  loadFromLocalStorage();
+  renderExpenses();
+  showBalance();
+});
+
+//===============Expenses Function==============
+function expensesFun() {
+  let expensesDescValue = expensesDescEl.value.trim();
+  let expensesAmountValue = expensesAmountEl.value.trim();
+
+  if (expensesDescValue === "" || expensesAmountValue === "" || parseInt(expensesAmountValue) <= 0 || parseInt(budgetCardEl.textContent) <= 0) {
+    errorMsg();
+    return;
+  }
+
+  let amount = parseInt(expensesAmountValue);
+  expensesAmountEl.value = "";
+  expensesDescEl.value = "";
+
+  // Store value
+  let expenses = {
+    id: itemId,
+    title: expensesDescValue,
+    amount: amount,
+    date: DateTb.toLocaleDateString(),
+  };
+
+  itemId++;
+  itemList.push(expenses);
+  saveToLocalStorage();
+
+  //Add expenses inside html
+  addExpenseToDOM(expenses);
+  showBalance();
+};
+
+function errorMsg(){
+  error.removeAttribute("hidden");
+  setTimeout(() => {
+    error.setAttribute("hidden", "");
+  }, 2500);
+}
+
+//=============add Expenses==========
+function addExpenseToDOM(expensesPara) {
+  const html = `
+    <div class="tbl_tr_content" data-id="${expensesPara.id}">
+      <div>${expensesPara.id}</div>
+      <div>${expensesPara.title}</div>
+      <div class="date_tb">${expensesPara.date}</div>
+      <div><span>$</span>${expensesPara.amount}</div>
+      <div>
+        <button type="button" class="btn_delete">Remove</button>
+      </div>
+    </div>`;
+  tblRecordEl.insertAdjacentHTML("beforeend", html);
+
+  //=======Delete button=======
+  const newDeleteBtn = tblRecordEl.querySelector(`.tbl_tr_content[data-id="${expensesPara.id}"] .btn_delete`);
+  newDeleteBtn.addEventListener('click', (e) => {
+    const parentDiv = e.target.closest('.tbl_tr_content');
+    const id = parseInt(parentDiv.getAttribute('data-id'));
+
+    // Remove from DOM
+    parentDiv.remove();
+
+    // Remove from itemList array
+    itemList = itemList.filter(item => item.id !== id);
+    saveToLocalStorage();
+    showBalance();
+  });
+}
+
+// Render expenses on page load
+function renderExpenses() {
+  tblRecordEl.innerHTML = ''; // clear existing
+  itemList.forEach(expense => addExpenseToDOM(expense));
+}
+
+//=============budget Function============
+function budgetFun() {
+  const budgetValue = budgetInputEl.value.trim();
+
+  if (budgetValue === "" || isNaN(budgetValue) || budgetValue <= 0) {
+    error.style.display = 'block';
+    setTimeout(() => {
+      error.style.display = '';
+    }, 2500);
+    return;
+  }
+
+  budgetCardEl.textContent = budgetValue;
+  budgetAmount = parseInt(budgetValue);
+  localStorage.setItem('budgetAmount', budgetAmount);
+  budgetInputEl.value = "";
+  showBalance();
+}
+
+//====================Show balance==
+function showBalance() {
+  const expenses = totalExpenses();
+  const total = parseInt(budgetCardEl.textContent) - expenses;
+  balanceCardEl.textContent = total;
+}
+
+function totalExpenses() {
+  let total = 0;
+
+  if (itemList.length > 0) {
+    total = itemList.reduce(function (acc, curr) {
+      acc += curr.amount;
+      return acc;
+    }, 0);
+  }
+  expensesCardEl.textContent = total;
+  return total;
+}
+
+// Save current data to localStorage
+function saveToLocalStorage() {
+  localStorage.setItem('itemList', JSON.stringify(itemList));
+  localStorage.setItem('budgetAmount', budgetAmount);
+}
+
+// Load saved data from localStorage
+function loadFromLocalStorage() {
+  if (budgetAmount) {
+    budgetCardEl.textContent = budgetAmount;
+  }
+}

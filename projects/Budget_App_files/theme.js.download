@@ -1,0 +1,20 @@
+const settingSwitch = document.querySelector('.settings_btn');
+ settingSwitch.addEventListener('click', event => {
+    document.querySelector('.settings').classList.toggle('open')
+ })
+
+
+//=============Theme Style=============
+const themeStyleToggle = document.querySelectorAll('.alternate-style');
+function SetActiveStyle(color){
+
+   themeStyleToggle.forEach((style) => {
+      if(color === style.getAttribute('title')){
+
+         style.removeAttribute("disabled");
+      }
+      else{
+         style.setAttribute("disabled","true");
+      }
+   });
+};

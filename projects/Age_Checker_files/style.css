@@ -1,0 +1,115 @@
+.app {
+    margin: auto 0;
+}
+/* -------------------- */
+#section{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    display: flex;
+    flex-direction: column;
+}
+
+.logo{
+    position: relative;
+    margin: 0;
+    display: inline-flex;
+}
+
+.logo>h1{
+    color: blue;
+    font-family: monospace;
+    font-size: 100px;
+    text-align: center;
+    margin: 0;
+    text-decoration: underline;
+}
+
+.logo>span{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: red;
+    font-size: 100px;
+    text-decoration: none;
+}
+.container{
+    margin: 15px;
+    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: rgb(204, 200, 200);
+    border-radius: 20px;
+    padding: 10px;
+}
+.container>h2{
+    font-size: 15px;
+    margin-right: 10px;
+}
+.data_input>input{
+    border: none;
+    background: azure;
+    border-radius: 10px ;
+    height: 7vh;
+    width: 6rem;
+    font-size: 19px;
+    font-weight: 900;
+    outline: none;
+    
+}
+.data_input>button{
+    border-radius: 10px;
+    border: 0;
+    background: blue;
+    color: azure;
+    height: 7vh;
+    font-size: 19px;
+    font-weight: 900;
+    margin-right: px;
+}
+.data_input>button:hover{
+    background:rgb(59, 59, 205);
+}
+.data_input>button:active{
+    background:RED;
+    transform: translate(1px,1px);
+}
+.data_input>#clear{
+    border-radius: 10px;
+    border: 0;
+    background: rgb(4, 255, 0);
+    color: azure;
+    height: 7vh;
+    font-size: 19px;
+    font-weight: 900;
+    margin-right: px;
+}
+.data_input>#clear:hover{
+    background:rgb(141, 233, 110);
+}
+.data_input>#clear:active{
+    background:rgb(154, 250, 0);
+    transform: translate(1px,1px);
+}
+.print{
+    align-self: center;
+    margin-top: 15px;
+}
+.output{
+    border: 5px solid rgb(167, 157, 157);
+    width: 12rem;
+    height: 18vh;
+    border-radius: 20px;
+}
+.output>h2{
+    font-size: 100px;
+    font-weight: 900;
+    text-align: center;
+    margin: 0;
+}
+.print>span{
+    font-size:30px;
+    font-weight: 900;
+    margin-left: 150px;
+    color: rgb(105, 98, 98);
+}

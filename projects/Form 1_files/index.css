@@ -1,0 +1,145 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  }
+  body {
+    background-image: url(/assets/windows\ wallpaper.jpg);
+    background-repeat: no-repeat;
+    background-position: ;
+    background-size: cover;
+    background-attachment: fixed;
+    justify-content: center;
+  }
+  section {
+    opacity:30%;
+    transform: translateX(30px);
+    position: relative;
+    backdrop-filter: blur(35px);
+    align-items: center;
+    display: flex;
+    border: 2px solid cyan;
+    height: 500px;
+    width: 400px;
+    top: 100px;
+    left: 35vw;
+    justify-content: center;
+    padding: 2rem 3rem;
+    border-radius: 20px;
+  }
+  section:focus-within{
+    box-shadow: 0 0 30px azure;
+    animation: 1s ease-in-out both 0s Section;
+  }
+  @keyframes Section {
+    form {
+      margin-top: 0px;
+    }
+    to {
+      margin-top: -30px;
+    }
+    100%{opacity: 100%;}
+    
+  }
+  h1 {
+    transform: translateY(-60px);
+    color: azure;
+    text-align: center;
+    border: azure solid 3px;
+    border-radius: 10px;
+    width: 300px;
+    justify-items: center;
+    padding: 5px;
+    border-inline-style: inherit;
+  }
+  #password,
+  #email {
+    border-bottom: 3px solid azure;
+    color: aqua;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    margin: 7px;
+    display: grid;
+    border-radius: 10px;
+    width: 200px;
+    height: 30px;
+    background: transparent;
+  }
+  #password {
+    font-size: xx-large;
+  }
+  #email:focus{
+    animation: Logs both;
+    animation-duration: 300ms;
+   animation-delay: 0;
+   animation-timing-function: ease-in-out ;
+  
+  }
+  #password:focus{
+    animation: Logs both;
+    animation-duration: 300ms;
+   animation-delay: 0;
+   animation-timing-function: ease-in-out ;
+
+  
+  }
+  
+  @keyframes Logs{
+    100%{transform: translate(30px ,-5px );}
+    0%{transform: translate(0px ,0px )}
+  }
+  label,
+  p {
+    color: rgb(236, 248, 248);
+    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+    margin: 10px;
+  }
+  a {
+    color: aqua;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  a:active {
+    padding: 4px;
+    text-decoration: none;
+    text-shadow:0 0 10px cyan ;
+  }
+  button {
+    align-content: center;
+    position: relative;
+    left: 95px;
+    margin: 10px;
+    text-align: center;
+    width: 100px;
+    height: 30px;
+    border-radius: 50px;
+    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+    font-weight: bolder;
+    font-size: 15px;
+    color: azure;
+    border: solid;
+    background: transparent;
+  }
+  button:hover {
+    box-shadow: 0 0 10px;
+  }
+  button:active {
+    background-color: cyan;
+    color: rgb(19, 15, 52);
+  }
+  #checkbox:checked {
+    box-shadow: 0 0 10px cyan;
+  }
+  #pwd+label :FOCUS{
+    animation: Logs both;
+    animation-duration: 300ms;
+   animation-delay: 0;
+   animation-timing-function: ease-in-out ;
+   transition: 500ms ease-in-out;
+   text-size-adjust: 0px;
+
+  }
+ 
