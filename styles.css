@@ -72,7 +72,7 @@ h3 {
   font-size: 1.5rem;
 }
 
-/*============================ Header and Navigation ==================*/
+/*=========================== Header and Navigation ==================*/
 header {
   position: fixed;
   top: 0;
@@ -685,3 +685,4 @@ footer {
     background-position: 100% 100%;
   }
 }
+
